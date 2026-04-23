@@ -3,7 +3,7 @@ session_start();
 
 $routes = require_once "../app/routes/web.php";
 
-$route = trim($_GET['route'] ?? 'login', '/');
+$route = $_GET['route'] ?? 'login';
 
 if (!array_key_exists($route, $routes)) {
     echo "404";
@@ -13,7 +13,7 @@ if (!array_key_exists($route, $routes)) {
 $controllerName = $routes[$route]['controller'];
 $method = $routes[$route]['method'];
 
-require_once __DIR__ . "/../app/controllers/" . $controllerName . ".php";
+require_once "../app/controllers/$controllerName.php";
 
 $controller = new $controllerName();
 
